@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TravelPro - Agencia de Viajes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="fixed">
+    <div class="container header-content">
+      <h1 class="logo">TravelPro</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home">Inicio</a></li>
+          <li><a href="#destinos">Destinos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <button id="cambiarTema" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </header>
+
+  <section id="home" class="full-section hero">
+    <div class="container hero-content">
+      <h2>Explora el mundo con TravelPro</h2>
+      <p>Vive experiencias únicas. Tu próxima aventura comienza aquí.</p>
+      <a href="#destinos" class="btn-primary">Descubrir destinos</a>
+    </div>
+  </section>
+
+  <section id="destinos" class="full-section destinos-section">
+    <div class="container">
+      <h2>Destinos populares</h2>
+      <div class="controls">
+        <label for="filtro">Filtrar por tipo:</label>
+        <select id="filtro">
+          <option value="todos">Todos</option>
+          <option value="playa">Playa</option>
+          <option value="ciudad">Ciudad</option>
+          <option value="aventura">Aventura</option>
+        </select>
+      </div>
+      <div class="grid-destinos">
+        <!-- Repite las tarjetas de destino -->
+        <article class="card playa">
+          <img src="https://source.unsplash.com/600x400/?beach" alt="Playa Paraíso" loading="lazy" />
+          <div class="card-content">
+            <h3>Playa Paraíso</h3>
+            <p>Relájate en aguas cristalinas bajo el sol.</p>
+          </div>
+        </article>
+        <!-- ... más tarjetas: ciudad, aventura, etc. -->
+      </div>
+    </div>
+  </section>
+
+  <section class="full-section cta">
+    <div class="container">
+      <h2>¿Listo para comenzar tu viaje?</h2>
+      <p>Contacta con nosotros y recibe asesoramiento personalizado.</p>
+      <a href="#contacto" class="btn-primary">Escríbenos</a>
+    </div>
+  </section>
+
+  <section id="contacto" class="full-section contacto">
+    <div class="container contacto-content">
+      <h2>Contáctanos</h2>
+      <form id="formulario-contacto">
+        <input type="text" placeholder="Nombre" required />
+        <input type="email" placeholder="Tu correo" required />
+        <textarea placeholder="Mensaje" rows="4" required></textarea>
+        <button type="submit" class="btn-primary">Enviar mensaje</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="full-section footer">
+    <p>© 2025 TravelPro. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+

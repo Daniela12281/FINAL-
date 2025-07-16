@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agencia de Viajes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <h1 class="logo">TravelPro</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#destinos">Destinos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <button id="cambiarTema" aria-label="Cambiar tema">🌙</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>Encuentra tu próximo destino soñado</h2>
+      <p>Explora el mundo con nosotros. Vive experiencias únicas.</p>
+      <a href="#destinos" class="btn-primary">Ver destinos</a>
+    </div>
+  </section>
+
+  <section id="destinos" class="container destinos-section">
+    <h3>Destinos populares</h3>
+
+    <div class="controls">
+      <label for="filtro">Filtrar por tipo:</label>
+      <select id="filtro" aria-label="Filtro de destinos">
+        <option value="todos">Todos</option>
+        <option value="playa">Playa</option>
+        <option value="ciudad">Ciudad</option>
+        <option value="aventura">Aventura</option>
+      </select>
+    </div>
+
+    <div class="grid-destinos">
+      <article class="card playa">
+        <img src="https://source.unsplash.com/400x300/?beach" alt="Playa Paraíso" loading="lazy" />
+        <div class="card-content">
+          <h4>Playa Paraíso</h4>
+          <p>Aguas cristalinas y sol eterno para relajarte.</p>
+        </div>
+      </article>
+
+      <article class="card ciudad">
+        <img src="https://source.unsplash.com/400x300/?city" alt="Ciudad Moderna" loading="lazy" />
+        <div class="card-content">
+          <h4>Ciudad Moderna</h4>
+          <p>Luces, cultura y vida nocturna vibrante.</p>
+        </div>
+      </article>
+
+      <article class="card aventura">
+        <img src="https://source.unsplash.com/400x300/?mountain" alt="Aventura Alpina" loading="lazy" />
+        <div class="card-content">
+          <h4>Aventura Alpina</h4>
+          <p>Escalada, senderismo y emoción en la naturaleza.</p>
+        </div>
+      </article>
+
+      <article class="card playa">
+        <img src="https://source.unsplash.com/400x300/?tropical-beach" alt="Islas Tropicales" loading="lazy" />
+        <div class="card-content">
+          <h4>Islas Tropicales</h4>
+          <p>Relajación total en un paraíso natural y exótico.</p>
+        </div>
+      </article>
+
+      <article class="card ciudad">
+        <img src="https://source.unsplash.com/400x300/?urban" alt="Metrópolis" loading="lazy" />
+        <div class="card-content">
+          <h4>Metrópolis</h4>
+          <p>Innovación y cultura en el corazón urbano.</p>
+        </div>
+      </article>
+
+      <article class="card aventura">
+        <img src="https://source.unsplash.com/400x300/?jungle" alt="Selva Aven
+
+

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexus Viajes - Tu Próxima Aventura</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Serif (Playfair Display) and Sans-serif (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for elegant serif font and modern sans-serif */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333; /* Dark grey for body text */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .btn-primary {
+            background-color: #007bff; /* Vibrant Blue */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Fully rounded */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker Blue on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .btn-secondary {
+            background-color: #6c757d; /* Muted Grey */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Darker Grey on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .card-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1920x1080/007bff/ffffff?text=Tu+Aventura+Comienza+Aqui') no-repeat center center/cover;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .section-heading {
+            border-bottom: 2px solid #007bff; /* Vibrant blue underline */
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .input-field {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 antialiased">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md py-4 px-6 md:px-12 flex justify-between items-center sticky w-full z-50 rounded-b-lg">
+        <div class="text-3xl font-bold text-blue-700">
+            <!-- Lexus Viajes title now acts as a link to the top of the page -->
+            <a href="#" class="text-blue-700 hover:text-blue-800 transition duration-300">
+                <h1>Lexus Viajes</h1>
+            </a>
+        </div>
+        <!-- Navigation links styled as buttons for better visibility and interaction -->
+        <nav class="hidden md:flex space-x-4">
+            <a href="#hoteles" class="px-4 py-2 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200 font-medium transition duration-300 inline-flex items-center">Hoteles</a>
+            <a href="#destinos" class="px-4 py-2 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200 font-medium transition duration-300 inline-flex items-center">Destinos</a>
+            <a href="#restaurantes" class="px-4 py-2 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200 font-medium transition duration-300 inline-flex items-center">Restaurantes</a>
+            <a href="#alquiler-coches" class="px-4 py-2 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200 font-medium transition duration-300 inline-flex items-center">Alquiler de Coches</a>
+            <a href="#contacto" class="px-4 py-2 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200 font-medium transition duration-300 inline-flex items-center">Contacto</a>
+        </nav>
+        <button class="md:hidden text-gray-700 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section mt-16 rounded-b-lg">
+        <div class="container mx-auto px-4 py-20">
+            <h2 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">Encuentra tu próxima aventura</h2>
+            <!-- Slogan added here -->
+            <p class="text-xl md:text-2xl mb-4 italic">"Experiencias de viaje de lujo personalizadas que superan tus expectativas"</p>
+            <p class="text-xl md:text-2xl mb-10">Descubre hoteles, destinos y experiencias inolvidables.</p>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg max-w-4xl mx-auto">
+                <form class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                    <div>
+                        <label for="destino" class="block text-gray-700 text-left font-semibold mb-2">Destino</label>
+                        <input type="text" id="destino" placeholder="¿A dónde quieres ir?" class="input-field">
+                    </div>
+                    <div>
+                        <label for="checkin" class="block text-gray-700 text-left font-semibold mb-2">Check-in</label>
+                        <input type="date" id="checkin" class="input-field">
+                    </div>
+                    <div>
+                        <label for="checkout" class="block text-gray-700 text-left font-semibold mb-2">Check-out</label>
+                        <input type="date" id="checkout" class="input-field">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn-primary w-full">Buscar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-12">
+
+        <!-- Hoteles Section -->
+        <section id="hoteles" class="mb-16">
+            <h2 class="text-4xl font-bold mb-8 text-center section-heading">Hoteles Exclusivos</h2>
+            <div id="hoteles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Hotel cards will be injected here by JavaScript -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-effect">
+                    <img src="https://placehold.co/400x250/FFD700/000000?text=Hotel+Lujo" alt="Hotel de Lujo" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Cargando Hoteles...</h3>
+                        <p class="text-gray-600 text-sm">Esperando datos de la API.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Destinos Section -->
+        <section id="destinos" class="mb-16">
+            <h2 class="text-4xl font-bold mb-8 text-center section-heading">Descubre el mundo con elegancia</h2>
+            <div id="destinos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Destination cards will be injected here by JavaScript -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-effect">
+                    <img src="https://placehold.co/300x200/FF6347/FFFFFF?text=Destino" alt="Destino" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-blue-800">Cargando Destinos...</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Restaurantes Section -->
+        <section id="restaurantes" class="mb-16">
+            <h2 class="text-4xl font-bold mb-8 text-center section-heading">Experiencias Gastronómicas</h2>
+            <div id="restaurantes-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Restaurant cards will be injected here by JavaScript -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-effect">
+                    <img src="https://placehold.co/400x250/20B2AA/FFFFFF?text=Restaurante" alt="Restaurante" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Cargando Restaurantes...</h3>
+                        <p class="text-gray-600 text-sm">Esperando datos de la API.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Car Rental Section -->
+        <section id="alquiler-coches" class="mb-16">
+            <h2 class="text-4xl font-bold mb-8 text-center section-heading">Alquiler de Coches de Lujo</h2>
+            <div id="coches-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Car rental cards will be injected here by JavaScript -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-effect">
+                    <img src="https://placehold.co/400x250/C0C0C0/000000?text=Coche+Lujo" alt="Coche de Lujo" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Cargando Coches...</h3>
+                        <p class="text-gray-600 text-sm">Esperando datos de la API.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Questionnaire Section -->
+        <section id="cuestionario" class="bg-blue-50 p-8 rounded-xl shadow-lg mb-16">
+            <h2 class="text-4xl font-bold mb-8 text-center section-heading">Cuéntanos sobre tu viaje ideal</h2>
+            <form id="questionnaire-form" class="max-w-2xl mx-auto space-y-6">
+                <div>
+                    <label for="q-destino" class="block text-gray-700 font-semibold mb-2">¿Cuál es tu destino soñado?</label>
+                    <input type="text" id="q-destino" name="destino" placeholder="Ej. París, playa tropical..." class="input-field">
+                </div>
+                <div>
+                    <label for="q-actividades" class="block text-gray-700 font-semibold mb-2">¿Qué tipo de actividades te gustan?</label>
+                    <textarea id="q-actividades" name="actividades" rows="4" placeholder="Ej. Aventura, relax, cultura, gastronomía..." class="input-field"></textarea>
+                </div>
+                <div>
+                    <label for="q-presupuesto" class="block text-gray-700 font-semibold mb-2">¿Cuál es tu presupuesto aproximado?</label>
+                    <select id="q-presupuesto" name="presupuesto" class="input-field">
+                        <option value="">Selecciona una opción</option>
+                        <option value="economico">Económico</option>
+                        <option value="moderado">Moderado</option>
+                        <option value="lujo">Lujo</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-primary">Enviar Respuestas</button>
+                </div>
+            </form>
+            <div id="questionnaire-message" class="mt-4 text-center text-green-700 font-semibold hidden">
+                ¡Gracias por tus respuestas! Nos pondremos en contacto contigo pronto.
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-6 md:px-12 rounded-t-lg">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-2xl font-bold mb-4">Lexus Viajes</h3>
+                <p class="text-gray-400">Tu compañero ideal para explorar el mundo.</p>
+            </div>
+            <div>
+                <h4 class="text-xl font-semibold mb-4">Enlaces Rápidos</h4>
+                <ul class="space-y-2">
+                    <li><a href="#hoteles" class="text-gray-400 hover:text-white transition duration-300">Hoteles</a></li>
+                    <li><a href="#destinos" class="text-gray-400 hover:text-white transition duration-300">Destinos</a></li>
+                    <li><a href="#restaurantes" class="text-gray-400 hover:text-white transition duration-300">Restaurantes</a></li>
+                    <li><a href="#alquiler-coches" class="text-gray-400 hover:text-white transition duration-300">Alquiler de Coches</a></li>
+                    <li><a href="#contacto" class="text-gray-400 hover:text-white transition duration-300">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-semibold mb-4">Contacto</h4>
+                <p class="text-gray-400">Email: info@lexusviajes.com</p>
+                <p class="text-gray-400">Teléfono: +34 123 456 789</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Facebook</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Instagram</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-gray-500 mt-8 border-t border-gray-700 pt-4">
+            &copy; 2024 Lexus Viajes. Todos los derechos reservados.
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    </body>
