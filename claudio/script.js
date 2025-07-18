@@ -43,7 +43,7 @@
                             id: 1,
                             nombre: "París, Francia",
                             descripcion: "La ciudad del amor y la luz, con sus icónicos monumentos y cultura.",
-                            imagen: "https://placehold.co/300x200/FF6347/FFFFFF?text=Paris"
+                            imagen: "leyendas-de-paris.jpg"
                         },
                         {
                             id: 2,

@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexus Viajes - Tu Aventura Comienza Aquí</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #764ba2;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .logo-icon::after {
+            content: '✈';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #764ba2;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-main {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-sub {
+            font-size: 0.8rem;
+            color: #cd853f;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #cd853f, #a0522d);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(205, 133, 63, 0.3);
+            animation: fadeInUp 1s ease-out 1s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(205, 133, 63, 0.4);
+            background: linear-gradient(135deg, #d2691e, #8b4513);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #764ba2;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        /* API Data Display */
+        .api-data {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .data-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .data-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .data-item h4 {
+            font-family: 'Playfair Display', serif;
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        /* Survey Form */
+        .survey {
+            background: linear-gradient(135deg, #f8f8ff, #e6e6fa);
+            color: #333;
+        }
+
+        .survey-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: white;
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Loading and Error States */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #667eea;
+        }
+
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            padding: 1rem;
+            background: rgba(231, 76, 60, 0.1);
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #764ba2;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                gap: 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 0.5rem 2rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                margin-right: 10px;
+            }
+
+            .logo-main {
+                font-size: 1.4rem;
+            }
+
+            .logo-sub {
+                font-size: 0.7rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        /* Tablet Design */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .data-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-content h1 {
+                font-size: 3.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .logo-main {
+                font-size: 1.2rem;
+            }
+
+            .logo-sub {
+                font-size: 0.6rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .survey-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: #667eea;
+            transition: background 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span class="logo-main">Lexus</span>
+                    <span class="logo-sub">Viajes</span>
+                </div>
+            </a>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#destinos">Destinos</a></li>
+                <li><a href="#hoteles">Hoteles</a></li>
+                <li><a href="#alquiler">Alquiler</a></li>
+                <li><a href="#cuestionario">Cuestionario</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Descubre el Mundo con Elegancia</h1>
+            <p>Experiencias de viaje de lujo personalizadas que superan tus expectativas</p>
+            <a href="#servicios" class="btn">Explora Nuestros Servicios</a>
+        </div>
+    </section>
+
+    <section id="servicios" class="container">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card" onclick="loadHotels()">
+                <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Hoteles">
+                <h3>Hoteles de Lujo</h3>
+                <p>Hospedajes exclusivos en los mejores destinos del mundo con servicios premium y comodidades excepcionales.</p>
+            </div>
+            <div class="service-card" onclick="loadDestinations()">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Destinos">
+                <h3>Destinos Exclusivos</h3>
+                <p>Explora lugares únicos y paradisíacos cuidadosamente seleccionados para ofrecerte experiencias inolvidables.</p>
+            </div>
+            <div class="service-card" onclick="loadRestaurants()">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Restaurantes">
+                <h3>Gastronomía Gourmet</h3>
+                <p>Disfruta de la mejor cocina local e internacional en restaurantes cuidadosamente seleccionados.</p>
+            </div>
+            <div class="service-card" onclick="loadCarRental()">
+                <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Alquiler de Coches">
+                <h3>Alquiler de Coches</h3>
+                <p>Vehículos premium y de lujo para que explores cada destino con comodidad y estilo excepcional.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="destinos" class="api-data">
+        <div class="container">
+            <h2 class="section-title">Destinos Populares</h2>
+            <div id="destinations-content">
+                <div class="loading">Cargando destinos increíbles...</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hoteles" class="container">
+        <h2 class="section-title">Hoteles Recomendados</h2>
+        <div id="hotels-content">
+            <div class="loading">Cargando hoteles de lujo...</div>
+        </div>
+    </section>
+
+    <section id="alquiler" class="container">
+        <h2 class="section-title">Alquiler de Vehículos Premium</h2>
+        <div id="car-rental-content">
+            <div class="loading">Cargando vehículos de lujo...</div>
+        </div>
+    </section>
+
+    <section id="cuestionario" class="survey">
+        <div class="container">
+            <h2 class="section-title" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Cuéntanos sobre tu Viaje Ideal</h2>
+            <form class="survey-form" id="travelSurvey">
+                <div class="form-group">
+                    <label for="name">Nombre Completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destino Preferido</label>
+                    <select id="destination" name="destination" required>
+                        <option value="">Selecciona un destino</option>
+                        <option value="europa">Europa</option>
+                        <option value="asia">Asia</option>
+                        <option value="america">América</option>
+                        <option value="africa">África</option>
+                        <option value="oceania">Oceanía</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="budget">Presupuesto Aproximado</label>
+                    <select id="budget" name="budget" required>
+                        <option value="">Selecciona tu presupuesto</option>
+                        <option value="1000-3000">$1,000 - $3,000</option>
+                        <option value="3000-5000">$3,000 - $5,000</option>
+                        <option value="5000-10000">$5,000 - $10,000</option>
+                        <option value="10000+">$10,000+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="travelers">Número de Viajeros</label>
+                    <input type="number" id="travelers" name="travelers" min="1" max="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="interests">Intereses Especiales</label>
+                    <textarea id="interests" name="interests" placeholder="Cuéntanos qué tipo de actividades te interesan..."></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lexus Viajes</h3>
+                    <p>Tu compañía de confianza para experiencias de viaje excepcionales desde 2015.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📞 +34 631598898</p>
+                    <p>📧 info@lexusviajes.com</p>
+                    <p>📍 123 Travel Street, Bilbao 48005</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                        <a href="#">LI</a>
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 2025 Lexus Viajes. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Datos simulados para la demostración
+        const mockData = {
+            destinations: [
+                {
+                    name: "París, Francia",
+                    price: "$2,500",
+                    description: "La ciudad del amor con sus icónicos monumentos",
+                    image: "leyendas-de-paris.jpg"
+                },
+                {
+                    name: "Tokio, Japón",
+                    price: "$3,200",
+                    description: "Fusión perfecta entre tradición y modernidad",
+                    image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                },
+                {
+                    name: "Bali, Indonesia",
+                    price: "$1,800",
+                    description: "Paraíso tropical con cultura rica y playas espectaculares",
+                    image: "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                },
+                {
+                    name: "Santorini, Grecia",
+                    price: "$2,100",
+                    description: "Atardeceres mágicos en las islas griegas",
+                    image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                }
+            ],
+            cars: [
+                {
+                    name: "Mercedes-Benz S-Class",
+                    price: "$180/día",
+                    category: "Sedan de Lujo",
+                    features: "Cuero premium, Sistema de navegación, Asientos masajeadores",
+                    image: "https://images.unsplash.com/photo-1563720223185-11003d516935?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                },
+                {
+                    name: "BMW X7",
+                    price: "$220/día",
+                    category: "SUV Premium",
+                    features: "7 plazas, Techo panorámico, Sistema de entretenimiento",
+                    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                },
+                {
+                    name: "Audi A8",
+                    price: "$190/día",
+                    category: "Ejecutivo",
+                    features: "Conducción autónoma, Interior de lujo, Tecnología avanzada",
+                    image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                },
+                {
+                    name: "Porsche Cayenne",
+                    price: "$250/día",
+                    category: "SUV Deportivo",
+                    features: "Motor turbo, Suspensión deportiva, Diseño elegante",
+                    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                }
+            ],
+            hotels: [
+                {
+                    name: "Hotel Lexus Palace",
+                    price: "$450/noche",
+                    rating: "5 estrellas",
+                    location: "París, Francia",
+                    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                },
+                {
+                    name: "Lexus Resort Bali",
+                    price: "$320/noche",
+                    rating: "5 estrellas",
+                    location: "Bali, Indonesia",
+                    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                },
+                {
+                    name: "Lexus Boutique Tokyo",
+                    price: "$380/noche",
+                    rating: "4 estrellas",
+                    location: "Tokio, Japón",
+                    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                }
+            ],
+            restaurants: [
+                {
+                    name: "Le Bernardin",
+                    cuisine: "Francesa",
+                    rating: "3 Estrellas Michelin",
+                    location: "París"
+                },
+                {
+                    name: "Sukiyabashi Jiro",
+                    cuisine: "Japonesa",
+                    rating: "3 Estrellas Michelin",
+                    location: "Tokio"
+                },
+                {
+                    name: "Locavore",
+                    cuisine: "Asiática Moderna",
+                    rating: "Asia's 50 Best",
+                    location: "Bali"
+                }
+            ]
+        };
+
+        // Función para cargar destinos
+        function loadDestinations() {
+            const content = document.getElementById('destinations-content');
+            content.innerHTML = '<div class="loading">Cargando destinos...</div>';
+            
+            setTimeout(() => {
+                const html = mockData.destinations.map(dest => `
+                    <div class="data-item">
+                        <img src="${dest.image}" alt="${dest.name}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 10px;">
+                        <h4>${dest.name}</h4>
+                        <p>${dest.description}</p>
+                        <div class="price">${dest.price}</div>
+                    </div>
+                `).join('');
+                content.innerHTML = `<div class="data-grid">${html}</div>`;
+            }, 1000);
+        }
+
+        // Función para cargar hoteles
+        function loadHotels() {
+            const content = document.getElementById('hotels-content');
+            content.innerHTML = '<div class="loading">Cargando hoteles...</div>';
+            
+            setTimeout(() => {
+                const html = mockData.hotels.map(hotel => `
+                    <div class="data-item">
+                        <img src="${hotel.image}" alt="${hotel.name}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 10px;">
+                        <h4>${hotel.name}</h4>
+                        <p>⭐ ${hotel.rating} • 📍 ${hotel.location}</p>
+                        <div class="price">${hotel.price}</div>
+                    </div>
+                `).join('');
+                content.innerHTML = `<div class="data-grid">${html}</div>`;
+            }, 1000);
+        }
+
+        // Función para cargar alquiler de coches
+        function loadCarRental() {
+            const content = document.getElementById('car-rental-content');
+            content.innerHTML = '<div class="loading">Cargando vehículos de lujo...</div>';
+            
+            setTimeout(() => {
+                const html = mockData.cars.map(car => `
+                    <div class="data-item">
+                        <img src="${car.image}" alt="${car.name}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 10px;">
+                        <h4>${car.name}</h4>
+                        <p><strong>${car.category}</strong></p>
+                        <p style="font-size: 0.9rem; color: #666;">${car.features}</p>
+                        <div class="price">${car.price}</div>
+                    </div>
+                `).join('');
+                content.innerHTML = `<div class="data-grid">${html}</div>`;
+            }, 1000);
+        }
+
+        // Función para cargar restaurantes
+        function loadRestaurants() {
+            alert('Cargando información de restaurantes gourmet...');
+        }
+
+        // Manejo del formulario
+        document.getElementById('travelSurvey').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simular envío
+            const btn = this.querySelector('.btn');
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert('¡Gracias por tu solicitud! Te contactaremos pronto para planificar tu viaje ideal.');
+                this.reset();
+                btn.textContent = 'Enviar Solicitud';
+                btn.disabled = false;
+            }, 2000);
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.getElementById('navLinks');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Cargar datos iniciales
+        window.addEventListener('load', function() {
+            loadDestinations();
+            loadHotels();
+            loadCarRental();
+        });
+
+        // Efectos de animación en scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .data-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

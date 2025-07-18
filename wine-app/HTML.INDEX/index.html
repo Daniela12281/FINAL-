@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vino Tinto Borgon: Siente la pasión en cada copa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <h1 class="site-title">Vino Tinto Borgon</h1>
+            <p class="site-slogan">Siente la pasión en cada copa</p>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#explore">Explorar Vinos</a></li>
+                    <li><a href="#premium">Vinos Premium</a></li>
+                    <li><a href="#articles">Artículos</a></li>
+                    <li><a href="#tastings">Catas y Eventos</a></li>
+                    <li><a href="#about">Sobre Nosotros</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <section id="home" class="hero-section">
+            <h2>Descubre el Mundo del Vino Tinto con Borgon</h2>
+            <p>Sumérgete en aromas, sabores y tradiciones. Tu viaje vinícola comienza aquí, donde la pasión por el vino cobra vida en cada copa.</p>
+            <button class="call-to-action-btn" data-section="explore">Explorar Vinos Ahora</button>
+            <img src="images/hero-wine.jpg" alt="Copa de vino tinto en un ambiente cálido" class="hero-image">
+        </section>
+
+        <section id="explore" class="wine-explorer-section hidden">
+            <h2>Explorar Vinos</h2>
+            <div class="search-filters">
+                <input type="text" id="searchInput" placeholder="Buscar por nombre, uva o notas...">
+                <select id="regionFilter">
+                    <option value="">Todas las Regiones</option>
+                    </select>
+                <select id="grapeFilter">
+                    <option value="">Todas las Uvas</option>
+                    </select>
+                <select id="vintageFilter">
+                    <option value="">Todas las Añadas</option>
+                    </select>
+                <button id="searchBtn">Buscar</button>
+            </div>
+            <div id="wineListings" class="wine-grid">
+                </div>
+        </section>
+
+        <section id="premium" class="premium-wines-section hidden">
+            <h2>Vinos Premium</h2>
+            <p>Descubre nuestra exclusiva selección de vinos de alta gama, joyas vinícolas para momentos inolvidables.</p>
+            <div id="premiumWineListings" class="wine-grid">
+                </div>
+        </section>
+
+        <section id="articles" class="articles-section hidden">
+            <h2>Artículos y Guías</h2>
+            <div class="article-grid" id="articleListings">
+                </div>
+        </section>
+
+        <section id="tastings" class="tastings-section hidden">
+            <h2>Catas y Eventos Vinícolas</h2>
+            <p>¡Explora el mapa para descubrir bodegas, eventos y catas de vino cerca de ti o en tus destinos favoritos! Haz clic en los marcadores para ver más detalles.</p>
+            <div id="map" class="google-map"></div>
+            <div class="tasting-info" id="tastingDetails">
+                </div>
+        </section>
+
+        <section id="about" class="about-section hidden">
+            <h2>Sobre Vino Tinto Borgon</h2>
+            <p>En **Vino Tinto Borgon**, nuestra misión es compartir la **pasión y el arte** detrás de cada botella de vino tinto. Creemos que el vino es una expresión cultural, una historia embotellada y un puente para conectar personas. Desde los viñedos bañados por el sol hasta la copa, te acompañamos en cada paso de este fascinante viaje.</p>
+            <p>Nos inspiramos en la **tradición vitivinícola milenaria** y la combinamos con la **innovación moderna** para ofrecerte no solo información, sino una experiencia completa. Queremos que cada visita a nuestra web te acerque más al mundo del vino, descubriendo nuevos sabores, aromas y las historias que hacen a cada vino único.</p>
+            <p>¡Gracias por ser parte de la comunidad **Borgon**!</p>
+            <p>¿Tienes preguntas o sugerencias? Contáctanos en: <a href="mailto:info@vinotintoborgon.com">info@vinotintoborgon.com</a></p>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>© 2025 Vino Tinto Borgon. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook de Vino Tinto Borgon">Facebook</a>
+                <a href="#" aria-label="Instagram de Vino Tinto Borgon">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal hidden" id="cartModal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>Tu Carrito de Compras</h3>
+            <div id="cartItems">
+                <p>Tu carrito está vacío.</p>
+            </div>
+            <div class="cart-summary">
+                <p>Total: <span id="cartTotal">€0.00</span></p>
+            </div>
+            <div class="delivery-options">
+                <h4>Selecciona Fecha de Entrega:</h4>
+                <input type="date" id="deliveryDate" min=""> <p id="deliveryDateMessage"></p>
+            </div>
+            <button class="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+    </body>
+</html>

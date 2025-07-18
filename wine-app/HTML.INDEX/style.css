@@ -1,0 +1,961 @@
+/* Variables CSS para consistencia */
+:root {
+    --primary-color: #8B0000; /* Rojo oscuro, color vino */
+    --secondary-color: #A52A2A; /* Marrón rojizo */
+    --text-color: #333;
+    --light-text-color: #f8f8f8;
+    --background-light: #f4f4f4;
+    --background-dark: #222;
+    --border-radius: 8px;
+    --font-family: 'Merriweather', serif; /* Fuente con serifa para elegancia */
+    --font-family-alt: 'Roboto', sans-serif; /* Fuente sans-serif para interfaz */
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-alt);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-light);
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.main-header {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.site-title {
+    font-family: var(--font-family);
+    font-size: 2.8em;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.site-slogan {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px; /* Espacio entre los elementos del menú */
+}
+
+.main-nav a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+    position: relative;
+}
+
+.main-nav a::after { /* Efecto de subrayado al pasar el ratón */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--light-text-color);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* Secciones generales */
+.main-content section {
+    background-color: #fff;
+    padding: 40px;
+    margin-top: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.main-content section.hidden {
+    display: none; /* Controlado por JavaScript */
+}
+
+h2 {
+    font-family: var(--font-family);
+    color: var(--primary-color);
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('path/to/wine-bg.jpg') no-repeat center center/cover; /* Fondo de imagen */
+    color: var(--light-text-color);
+}
+
+.hero-section h2 {
+    color: #fff;
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.hero-section p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+.call-to-action-btn {
+    background-color: var(--secondary-color);
+    color: var(--light-text-color);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.call-to-action-btn:hover {
+    background-color: #B22222; /* Tono más oscuro */
+    transform: translateY(-2px);
+}
+
+/* Explorador de Vinos */
+.wine-explorer-section .search-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.search-filters input[type="text"],
+.search-filters select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    flex-grow: 1; /* Permite que los campos se expandan */
+    min-width: 180px; /* Ancho mínimo para buena visualización */
+}
+
+.search-filters button {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.search-filters button:hover {
+    background-color: var(--secondary-color);
+}
+
+.wine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+    gap: 25px;
+}
+
+.wine-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.wine-card:hover {
+    transform: translateY(-5px);
+}
+
+.wine-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.wine-card-content {
+    padding: 20px;
+}
+
+.wine-card h3 {
+    font-family: var(--font-family);
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.wine-card p {
+    font-size: 0.95em;
+    margin-bottom: 5px;
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--background-dark);
+    color: var(--light-text-color);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 50px;
+}
+
+.main-footer p {
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .site-title {
+        font-size: 2.2em;
+    }
+    .site-slogan {
+        font-size: 1em;
+    }
+    .main-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .main-nav li {
+        width: 100%;
+    }
+    .main-nav a {
+        display: block;
+        padding: 10px 0;
+    }
+    .hero-section h2 {
+        font-size: 2.5em;
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+    .search-filters {
+        flex-direction: column;
+    }
+    .wine-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        /* Variables CSS para consistencia */
+:root {
+    --primary-color: #8B0000; /* Rojo oscuro, color vino */
+    --secondary-color: #A52A2A; /* Marrón rojizo */
+    --accent-color: #D2691E; /* Naranja/marrón para detalles */
+    --text-color: #333;
+    --light-text-color: #f8f8f8;
+    --background-light: #f4f4f4;
+    --background-dark: #222;
+    --border-radius: 8px;
+    --font-family-serif: 'Merriweather', serif; /* Fuente con serifa para elegancia */
+    --font-family-sans: 'Roboto', sans-serif; /* Fuente sans-serif para interfaz */
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-sans);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-light);
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.main-header {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex; /* Usar flexbox para alinear contenido y carrito */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1; /* Permite que el contenido del header ocupe el espacio */
+}
+
+.site-title {
+    font-family: var(--font-family-serif);
+    font-size: 2.8em;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.site-slogan {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    gap: 25px; /* Espacio entre los elementos del menú */
+    justify-content: center;
+}
+
+.main-nav a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+    position: relative;
+}
+
+.main-nav a::after { /* Efecto de subrayado al pasar el ratón */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--light-text-color);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* Icono del carrito de compras */
+.cart-icon {
+    position: relative;
+    color: var(--light-text-color);
+    font-size: 1.8em;
+    cursor: pointer;
+    margin-right: 20px; /* Margen para separar del borde */
+    transition: color 0.3s ease;
+}
+
+.cart-icon:hover {
+    color: var(--accent-color);
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--accent-color);
+    color: white;
+    font-size: 0.6em;
+    border-radius: 50%;
+    padding: 3px 6px;
+    min-width: 20px;
+    text-align: center;
+}
+
+
+/* Secciones generales */
+.main-content section {
+    background-color: #fff;
+    padding: 40px;
+    margin-top: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.main-content section.hidden {
+    display: none; /* Controlado por JavaScript */
+}
+
+h2 {
+    font-family: var(--font-family-serif);
+    color: var(--primary-color);
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero-bg.jpg') no-repeat center center/cover; /* Asegúrate de tener una imagen en images/hero-bg.jpg */
+    color: var(--light-text-color);
+    position: relative;
+    overflow: hidden; /* Para contener la imagen flotante */
+}
+
+.hero-section h2 {
+    color: #fff;
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.hero-section p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+.hero-image {
+    width: 250px;
+    height: auto;
+    border-radius: 50%;
+    border: 5px solid var(--secondary-color);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    margin-top: 30px;
+    transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.05);
+}
+
+.call-to-action-btn {
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.call-to-action-btn:hover {
+    background-color: #C15E1C; /* Tono más oscuro */
+    transform: translateY(-2px);
+}
+
+/* Explorador de Vinos y Vinos Premium */
+.wine-explorer-section .search-filters,
+.premium-wines-section p {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+.wine-explorer-section .search-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.search-filters input[type="text"],
+.search-filters select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    flex-grow: 1; /* Permite que los campos se expandan */
+    min-width: 180px; /* Ancho mínimo para buena visualización */
+}
+
+.search-filters button {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.search-filters button:hover {
+    background-color: var(--secondary-color);
+}
+
+.wine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+    gap: 25px;
+}
+
+.wine-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.wine-card:hover {
+    transform: translateY(-5px);
+}
+
+.wine-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.wine-card-content {
+    padding: 20px;
+}
+
+.wine-card h3 {
+    font-family: var(--font-family-serif);
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.wine-card p {
+    font-size: 0.95em;
+    margin-bottom: 5px;
+}
+
+.wine-card .price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-top: 10px;
+    display: block;
+}
+
+.wine-card .view-details-btn,
+.wine-card .add-to-cart-btn {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.wine-card .add-to-cart-btn {
+    background-color: var(--secondary-color);
+    margin-left: 10px;
+}
+
+.wine-card .view-details-btn:hover {
+    background-color: var(--secondary-color);
+}
+.wine-card .add-to-cart-btn:hover {
+    background-color: #8B0000;
+}
+
+
+/* Artículos */
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.article-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+}
+
+.article-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.article-card-content {
+    padding: 20px;
+}
+
+.article-card h3 {
+    font-family: var(--font-family-serif);
+    font-size: 1.4em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.article-card p {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.article-card .read-more {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.article-card .read-more:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Catas y Eventos (Google Maps) */
+.tastings-section p {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+.google-map {
+    height: 500px; /* Altura fija para el mapa */
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.tasting-info {
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    border: 1px solid #eee;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+}
+
+.tasting-info h3 {
+    font-family: var(--font-family-serif);
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.tasting-info p {
+    font-size: 1em;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.tasting-info .call-to-action-btn.small-btn {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--background-dark);
+    color: var(--light-text-color);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 50px;
+}
+
+.main-footer p {
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* MODAL GENERAL (para detalles de vino/artículo y carrito) */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal.hidden {
+    display: none;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.modal-content img {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 5px;
+}
+.modal-content h3 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 2em;
+}
+.modal-content p {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* ESTILOS ESPECÍFICOS DEL CARRITO */
+#cartModal .modal-content {
+    max-width: 500px; /* Un poco más estrecho para el carrito */
+}
+#cartItems {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+}
+.cart-item:last-child {
+    border-bottom: none;
+}
+.cart-item-info {
+    flex-grow: 1;
+}
+.cart-item-info h4 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1.1em;
+    text-align: left;
+}
+.cart-item-info p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+}
+.item-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.item-quantity-controls button {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 3px 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+.item-quantity-controls button:hover {
+    background-color: var(--primary-color);
+}
+.item-quantity-controls span {
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cart-summary {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid var(--primary-color);
+    text-align: right;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+.delivery-options {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+.delivery-options h4 {
+    font-family: var(--font-family-serif);
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    text-align: left;
+}
+.delivery-options input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+#deliveryDateMessage {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+.checkout-btn {
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+.checkout-btn:hover {
+    background-color: #C15E1C;
+}
+
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .site-title {
+        font-size: 2.2em;
+    }
+    .site-slogan {
+        font-size: 1em;
+    }
+    .main-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .main-nav li {
+        width: 100%;
+    }
+    .main-nav a {
+        display: block;
+        padding: 10px 0;
+    }
+    .hero-section h2 {
+        font-size: 2.5em;
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+    .search-filters {
+        flex-direction: column;
+    }
+    .wine-grid, .article-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+    .tastings-section .google-map {
+        height: 400px;
+    }
+    .header-content {
+        width: 100%;
+    }
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 0;
+    }
+    .cart-icon {
+        margin: 10px 20px 10px auto; /* Mover el icono a la derecha en móvil */
+    }
+    .main-nav {
+        width: 100%;
+        margin-top: 15px;
+        padding-bottom: 10px;
+        border-top: 1px solid rgba(255,255,255,0.2);
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content section {
+        padding: 20px;
+    }
+    .hero-section h2 {
+        font-size: 2em;
+    }
+    .hero-section p {
+        font-size: 1em;
+    }
+    .site-title {
+        font-size: 1.8em;
+    }
+    .site-slogan {
+        font-size: 0.9em;
+    }
+    .call-to-action-btn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}
+    }
+}

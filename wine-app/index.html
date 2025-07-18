@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VINOS Y CATAS - Experiencia Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2d1b2e 0%, #4a2c4a 50%, #2d4a2d 100%);
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        .vineyard-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="vine" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M10,50 Q30,30 50,50 Q70,70 90,50" stroke="%23228b22" stroke-width="2" fill="none" opacity="0.3"/><circle cx="25" cy="45" r="3" fill="%23800020" opacity="0.4"/><circle cx="75" cy="55" r="3" fill="%23800020" opacity="0.4"/></pattern></defs><rect width="100%" height="100%" fill="url(%23vine)"/></svg>') repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.9), rgba(45, 27, 46, 0.9));
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.3), rgba(74, 44, 74, 0.3));
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #e8e8e8;
+        }
+
+        .section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #d4af37;
+            text-align: center;
+        }
+
+        .wine-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .wine-card {
+            background: linear-gradient(145deg, rgba(128, 0, 32, 0.4), rgba(45, 27, 46, 0.4));
+            border-radius: 15px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wine-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: all 0.5s ease;
+            transform: rotate(45deg);
+            opacity: 0;
+        }
+
+        .wine-card:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .wine-card:hover {
+            transform: translateY(-10px);
+            border-color: #d4af37;
+            box-shadow: 0 15px 30px rgba(128, 0, 32, 0.4);
+        }
+
+        .wine-card h3 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .wine-card p {
+            color: #e8e8e8;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .wine-info {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 1rem;
+            border-radius: 10px;
+            padding: 0 1rem;
+        }
+
+        .wine-info.active {
+            max-height: 300px;
+            padding: 1rem;
+        }
+
+        .wine-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #800020, #d4af37);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(128, 0, 32, 0.4);
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, rgba(74, 44, 74, 0.6), rgba(45, 74, 45, 0.6));
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+
+        .quiz-question h3 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover, .quiz-option.selected {
+            background: rgba(212, 175, 55, 0.3);
+            border-color: #d4af37;
+            transform: translateY(-2px);
+        }
+
+        .calendar-section {
+            background: rgba(34, 139, 34, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .calendar-day {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .calendar-day:hover {
+            background: rgba(212, 175, 55, 0.3);
+            border-color: #d4af37;
+        }
+
+        .calendar-day.has-event {
+            background: rgba(128, 0, 32, 0.4);
+            border-color: #800020;
+        }
+
+        .map-section {
+            background: rgba(128, 0, 32, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .map-container {
+            background: rgba(0, 0, 0, 0.3);
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #d4af37;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .map-marker:hover {
+            transform: scale(1.5);
+            background: #800020;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        .mobile-menu {
+            display: none;
+            background: #d4af37;
+            border: none;
+            color: #2d1b2e;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(128, 0, 32, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .wine-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-options {
+                flex-direction: column;
+            }
+
+            .calendar-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .wine-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, rgba(128, 0, 32, 0.3), rgba(212, 175, 55, 0.3));
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #d4af37;
+        }
+
+        .recommendation {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border-left: 4px solid #d4af37;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-grape {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #800020;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="vineyard-bg"></div>
+    <div class="floating-elements"></div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">VINOS Y CATAS</div>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#vinos">Vinos</a></li>
+                    <li><a href="#quiz">Quiz</a></li>
+                    <li><a href="#catas">Catas</a></li>
+                    <li><a href="#mapa">Mapa</a></li>
+                </ul>
+                <button class="mobile-menu" id="mobileMenu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero" id="home">
+            <h1>Bienvenido al Mundo del Vino</h1>
+            <p>Descubre los mejores vinos, participa en catas exclusivas y encuentra tu maridaje perfecto</p>
+            <button class="btn" onclick="scrollToSection('vinos')">Explorar Vinos</button>
+        </section>
+
+        <section class="section" id="vinos">
+            <h2>Nuestra Selección Premium</h2>
+            <div class="wine-categories">
+                <div class="wine-card" onclick="toggleWineInfo(this)">
+                    <div class="wine-image">🍷</div>
+                    <h3>Vinos Tintos</h3>
+                    <p>Selección de tintos con cuerpo y personalidad única</p>
+                    <div class="wine-price">€25 - €150</div>
+                    <div class="wine-info">
+                        <p><strong>Características:</strong> Cuerpo completo, taninos estructurados, notas de frutos rojos y especias.</p>
+                        <p><strong>Maridaje:</strong> Carnes rojas, quesos curados, chocolate oscuro.</p>
+                        <p><strong>Origen:</strong> Ribera del Duero, Rioja, Priorat.</p>
+                        <p><strong>Temperatura:</strong> 16-18°C</p>
+                        <button class="btn">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="wine-card" onclick="toggleWineInfo(this)">
+                    <div class="wine-image">🥂</div>
+                    <h3>Vinos Blancos</h3>
+                    <p>Frescura y elegancia en cada sorbo</p>
+                    <div class="wine-price">€18 - €80</div>
+                    <div class="wine-info">
+                        <p><strong>Características:</strong> Acidez equilibrada, aromas florales y frutales, final persistente.</p>
+                        <p><strong>Maridaje:</strong> Pescados, mariscos, ensaladas, quesos frescos.</p>
+                        <p><strong>Origen:</strong> Rías Baixas, Rueda, Penedés.</p>
+                        <p><strong>Temperatura:</strong> 8-10°C</p>
+                        <button class="btn">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="wine-card" onclick="toggleWineInfo(this)">
+                    <div class="wine-image">🍾</div>
+                    <h3>Espumosos</h3>
+                    <p>Burbujas que celebran cada momento especial</p>
+                    <div class="wine-price">€22 - €120</div>
+                    <div class="wine-info">
+                        <p><strong>Características:</strong> Burbuja fina y persistente, frescura y elegancia.</p>
+                        <p><strong>Maridaje:</strong> Aperitivos, postres, celebraciones.</p>
+                        <p><strong>Origen:</strong> Cava, Champagne, Prosecco.</p>
+                        <p><strong>Temperatura:</strong> 6-8°C</p>
+                        <button class="btn">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="wine-card" onclick="toggleWineInfo(this)">
+                    <div class="wine-image">🍯</div>
+                    <h3>Vinos Dulces</h3>
+                    <p>Dulzura natural y sabores intensos</p>
+                    <div class="wine-price">€35 - €200</div>
+                    <div class="wine-info">
+                        <p><strong>Características:</strong> Dulzura equilibrada, complejidad aromática, larga persistencia.</p>
+                        <p><strong>Maridaje:</strong> Postres, foie gras, quesos azules.</p>
+                        <p><strong>Origen:</strong> Jerez, Tokaji, Sauternes.</p>
+                        <p><strong>Temperatura:</strong> 10-12°C</p>
+                        <button class="btn">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="wine-card" onclick="toggleWineInfo(this)">
+                    <div class="wine-image">🌹</div>
+                    <h3>Vinos Rosados</h3>
+                    <p>La perfecta combinación entre tinto y blanco</p>
+                    <div class="wine-price">€15 - €65</div>
+                    <div class="wine-info">
+                        <p><strong>Características:</strong> Color rosado elegante, frescura y ligereza.</p>
+                        <p><strong>Maridaje:</strong> Ensaladas, pescados, comida mediterránea.</p>
+                        <p><strong>Origen:</strong> Provenza, Navarra, Cigales.</p>
+                        <p><strong>Temperatura:</strong> 8-10°C</p>
+                        <button class="btn">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="wine-card" onclick="toggleWineInfo(this)">
+                    <div class="wine-image">🏺</div>
+                    <h3>Vinos Reserva</h3>
+                    <p>Crianza excepcional y complejidad única</p>
+                    <div class="wine-price">€45 - €300</div>
+                    <div class="wine-info">
+                        <p><strong>Características:</strong> Crianza en barrica, complejidad aromática excepcional.</p>
+                        <p><strong>Maridaje:</strong> Carnes de caza, platos elaborados, momentos especiales.</p>
+                        <p><strong>Origen:</strong> Rioja Gran Reserva, Ribera del Duero.</p>
+                        <p><strong>Temperatura:</strong> 16-18°C</p>
+                        <button class="btn">Comprar Ahora</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quiz-section" id="quiz">
+            <h2>Quiz: Encuentra tu Vino Perfecto</h2>
+            <div class="quiz-question">
+                <h3>¿Cuál es tu ocasión favorita para disfrutar vino?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, 'dinner')">Cena romántica</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'party')">Celebración</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'relax')">Relajación</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'business')">Cena de negocios</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>¿Qué sabores prefieres?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, 'fruity')">Afrutados</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'dry')">Secos</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'sweet')">Dulces</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'complex')">Complejos</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>¿Qué tipo de comida sueles maridar?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, 'meat')">Carnes</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'fish')">Pescados</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'cheese')">Quesos</div>
+                    <div class="quiz-option" onclick="selectOption(this, 'dessert')">Postres</div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="calculateRecommendation()">Obtener Recomendación</button>
+            
+            <div id="recommendation" class="recommendation" style="display: none;">
+                <h3>Tu Vino Recomendado:</h3>
+                <p id="recommendationText"></p>
+            </div>
+        </section>
+
+        <section class="section calendar-section" id="catas">
+            <h2>Calendario de Catas</h2>
+            <p>Reserva tu plaza en nuestras catas exclusivas</p>
+            <div class="calendar-grid">
+                <div class="calendar-day">L</div>
+                <div class="calendar-day">M</div>
+                <div class="calendar-day">X</div>
+                <div class="calendar-day">J</div>
+                <div class="calendar-day">V</div>
+                <div class="calendar-day">S</div>
+                <div class="calendar-day">D</div>
+                <div class="calendar-day">1</div>
+                <div class="calendar-day">2</div>
+                <div class="calendar-day">3</div>
+                <div class="calendar-day">4</div>
+                <div class="calendar-day has-event" onclick="showEvent(this)">5<br>Cata Rioja</div>
+                <div class="calendar-day">6</div>
+                <div class="calendar-day">7</div>
+                <div class="calendar-day">8</div>
+                <div class="calendar-day">9</div>
+                <div class="calendar-day">10</div>
+                <div class="calendar-day">11</div>
+                <div class="calendar-day has-event" onclick="showEvent(this)">12<br>Cata Ribera</div>
+                <div class="calendar-day">13</div>
+                <div class="calendar-day">14</div>
+                <div class="calendar-day">15</div>
+                <div class="calendar-day">16</div>
+                <div class="calendar-day">17</div>
+                <div class="calendar-day">18</div>
+                <div class="calendar-day has-event" onclick="showEvent(this)">19<br>Maridaje</div>
+                <div class="calendar-day">20</div>
+                <div class="calendar-day">21</div>
+                <div class="calendar-day">22</div>
+                <div class="calendar-day">23</div>
+                <div class="calendar-day">24</div>
+                <div class="calendar-day has-event" onclick="showEvent(this)">25<br>Cata Priorat</div>
+                <div class="calendar-day">26</div>
+                <div class="calendar-day">27</div>
+                <div class="calendar-day">28</div>
+                <div class="calendar-day">29</div>
+                <div class="calendar-day">30</div>
+                <div class="calendar-day">31</div>
+            </div>
+        </section>
+
+        <section class="section map-section" id="mapa">
+            <h2>Mapa de Mejores Vinos</h2>
+            <p>Descubre las mejores bodegas y regiones vinícolas</p>
+            <div class="map-container">
+                <svg width="100%" height="100%" viewBox="0 0 800 400">
+                    <!-- Mapa base de España -->
+                    <path d="M100 200 L200 180 L300 160 L400 170 L500 180 L600 190 L700 200 L680 250 L600 280 L500 290 L400 285 L300 280 L200 270 L100 250 Z" 
+                          fill="rgba(128, 0, 32, 0.3)" 
+                          stroke="#d4af37" 
+                          stroke-width="2"/>
+                    
+                    <!-- Regiones vinícolas -->
+                    <circle cx="200" cy="220" r="15" fill="#d4af37" class="map-marker" onclick="showRegion('Rioja')"/>
+                    <text x="200" y="245" text-anchor="middle" fill="#d4af37" font-size="12">Rioja</text>
+                    
+                    <circle cx="300" cy="240" r="15" fill="#d4af37" class="map-marker" onclick="showRegion('Ribera del Duero')"/>
+                    <text x="300" y="265" text-anchor="middle" fill="#d4af37" font-size="12">Ribera del Duero</text>
+                    
+                    <circle cx="150" cy="300" r="15" fill="#d4af37" class="map-marker" onclick="showRegion('Rías Baixas')"/>
+                    <text x="150" y="325" text-anchor="middle" fill="#d4af37" font-size="12">Rías Baixas</text>
+                    
+                    <circle cx="500" cy="260" r="15" fill="#d4af37" class="map-marker" onclick="showRegion('Priorat')"/>
+                    <text x="500" y="285" text-anchor="middle" fill="#d4af37" font-size="12">Priorat</text>
+                    
+                    <circle cx="400" cy="300" r="15" fill="#d4af37" class="map-marker" onclick="showRegion('Jerez')"/>
+                    <text x="400" y="325" text-anchor="middle" fill="#d4af37" font-size="12">Jerez</text>
+                </svg>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Variables globales
+        let quizAnswers = {};
+        let selectedRegion = null;
+
+        // Menú móvil
+        document.getElementById('mobileMenu').addEventListener('click', function() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        });
+
+        // Función para mostrar/ocultar información del vino
+        function toggleWineInfo(card) {
+            const wineInfo = card.querySelector('.wine-info');
+            const allWineInfos = document.querySelectorAll('.wine-info');
+            
+            // Cerrar todas las otras tarjetas
+            allWineInfos.forEach(info => {
+                if (info !== wineInfo) {
+                    info.classList.remove('active');
+                }
+            });
+            
+            // Toggle la tarjeta seleccionada
+            wineInfo.classList.toggle('active');
+        }
+
+        // Función para seleccionar opciones del quiz
+        function selectOption(element, value) {
+            // Remover selección previa en la misma pregunta
+            const siblings = element.parentElement.querySelectorAll('.quiz-option');
+            siblings.forEach(sibling => sibling.classList.remove('selected'));
+            
+            // Seleccionar la opción actual
+            element.classList.add('selected');
+            
+            // Guardar la respuesta
+            const questionIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(element.closest('.quiz-question'));
+            quizAnswers[questionIndex] = value;
+        }
+
+        // Función para calcular
